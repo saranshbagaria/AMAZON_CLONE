@@ -4,6 +4,7 @@ import 'package:amazon_clone/router.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import './constants/global_variable.dart';
+//main
 void main() {
   runApp(MultiProvider(
     providers: [
