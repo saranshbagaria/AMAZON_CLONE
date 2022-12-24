@@ -2,6 +2,10 @@
 
 ![N|Solid](https://img.shields.io/badge/node.js-000000?style=for-the-badge&logo=node.js&logoColor=white?logoWidth=60?color=blue)       ![N|Solid](https://img.shields.io/badge/Mongodb-001E2B?style=for-the-badge&logo=mongodb) ![N|Solid](https://img.shields.io/badge/flutter-042B59?style=for-the-badge&logo=flutter)
 
+![N|Solid](https://img.shields.io/badge/postman-ef5b25?style=for-the-badge&logo=postman&logoColor=white)
+![N|Solid](https://img.shields.io/badge/dart-0075ba?style=for-the-badge&logo=dart&logoColor=white)
+![](https://img.shields.io/badge/express-000000?style=for-the-badge&logo=express&logoColor=white)
+![](https://img.shields.io/badge/npm-cc3534?style=for-the-badge&logo=npm&logoColor=white)
 ##### This is Amazon clone using Flutter as its frontend framework and Node js as its Backend server. main purpose of this project is learn 
 
 - integration between frontend and Backend 
