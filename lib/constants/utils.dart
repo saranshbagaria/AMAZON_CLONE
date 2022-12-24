@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 void showSnackbar({
   required BuildContext context,
   required String text,
-  }
-){
-  ScaffoldMessenger
-  .of(context)
-  .showSnackBar(
-    SnackBar(content: Text(text)
-    )
-  );
-  
+}) {
+  final GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey =
+      GlobalKey<ScaffoldMessengerState>();
+  // ScaffoldMessenger(
+  //   key: scaffoldMessengerKey,
+  //   child: SnackBar(content: Text(text)),
+  // );
+
+  scaffoldMessengerKey.currentState
+      ?.showSnackBar(SnackBar(content: Text(text)));
+
+  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(text)));
 }

@@ -53,18 +53,36 @@ async function validateUser(userData) {
             msg: "Incorrect Password"
         }
     }
-
+/// json web token use to 
     const token = webToken.sign({ id: validUser._id }, "passwordKey");
     return {
         statusCode: 200,
         token,
         ...validUser._doc
     }
+//... means destructuring 
+}
 
+async function tokenValidator(token){
+    if(!token) return false;
+    const verified = webToken.verify(token,"passwordKey")
+    if(!verified) return false;
+    const user = await UserDb.findById(verified.id);
+    if(!user) return false;
+
+    return true;
+}
+// here we are providing user data as per request 
+// but before providing data we use a miidle ware whicj verify taken 
+async function provideUserData(user){
+    const userRes = await UserDb.findById(user);
+    return userRes;
 }
 
 module.exports = {
     addUser,
     findUser,
-    validateUser
+    validateUser,
+    tokenValidator,
+    provideUserData
 }

@@ -10,9 +10,11 @@ const express = require('express')
 
 // local package
 const userModel = require('../../model/auth.model')
-
+const {authMiddleware} = require('../../middleware/auth.middleware');
 // variables
 const routes = express.Router();
+
+
 
 //
 routes.post('/api/signup', async(req, res) => {
@@ -52,5 +54,18 @@ routes.post('/api/signin', async(req, res) => {
     }
 });
 
+routes.post('/tokenInValid', async(req,res) =>{
+    try{
+        const valid = await userModel.tokenValidator(req.header('x-auth-toke'));
+        return res.json(valid);
+    } catch(e){
+        res.status(500).json({error: e.message});
+    }
+})
+
+routes.post('/',authMiddleware, async (req,res) =>{
+    const user = await userModel.provideUserData(req.user);
+    res.json({...user._doc,token: req.token});
+})
 /// exports
 module.exports = { routes }
