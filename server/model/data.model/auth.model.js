@@ -2,18 +2,21 @@
 const bcryptjs = require('bcryptjs');
 const webToken = require('jsonwebtoken');
 ///local imports
-const UserDb = require('./auth.moongo');
+const UserDb = require('../moongo.model/auth.moongo');
 
 
 async function addUser(userData) {
+
     const existed = await findUser({
         user_: userData.user_name,
         email_: userData.email
     });
+
     if (existed) {
         console.error('client already existed');
         return null;
     }
+    
     const hashedPassword = bcryptjs.hashSync(userData.password, 9);
 
     let user = new UserDb({
@@ -69,7 +72,6 @@ async function tokenValidator(token){
     if(!verified) return false;
     const user = await UserDb.findById(verified.id);
     if(!user) return false;
-
     return true;
 }
 // here we are providing user data as per request 

@@ -1,10 +1,10 @@
 import 'dart:convert';
 
 import 'package:amazon_clone/Providers/user_provider.dart';
+import 'package:amazon_clone/common/widget/bottom_bar.dart';
 import 'package:amazon_clone/constants/error_hadlig.dart';
 import 'package:amazon_clone/constants/global_variable.dart';
 import 'package:amazon_clone/constants/utils.dart';
-import 'package:amazon_clone/features/home/Screens/home_screen.dart';
 import 'package:amazon_clone/model/user_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
@@ -68,10 +68,11 @@ class AuthService {
           onSuccess: () async {
             SharedPreferences prefs = await SharedPreferences.getInstance();
             Provider.of<UserProvider>(context, listen: false).setUser(res.body);
+
             await prefs.setString(
                 'x-auth-token', jsonDecode(res.body)['token']);
             Navigator.pushNamedAndRemoveUntil(
-                context, HomeScreen.routeName, (route) => false);
+                context, BottomBar.routeName, (route) => false);
           });
     } catch (e) {
       showSnackbar(context: context, text: e.toString());
@@ -80,16 +81,16 @@ class AuthService {
 
   /// get user data
 
-  void getUserData({
-    required BuildContext context,
-  }) async {
+  void getUserData(
+    BuildContext context,
+  ) async {
     try {
       SharedPreferences preferences = await SharedPreferences.getInstance();
       String? token = preferences.getString('x-auth-token') ?? '';
-
+      print('token is = $token');
       // ignore: unnecessary_null_comparison
       if (token == null) {
-        preferences.setString('x-auth-token', '');
+        await preferences.setString('x-auth-token', '');
       }
 
       var tokenRes = await http.post(Uri.parse('$uri/tokenIsValid'),
@@ -97,6 +98,7 @@ class AuthService {
             'Content-Type': 'application/json; charset=UTF-8',
             'x-auth-token': token
           });
+      print('tokenRes = ${jsonDecode(tokenRes.body)}');
       var response = jsonDecode(tokenRes.body);
 
       if (response == true) {
@@ -109,6 +111,7 @@ class AuthService {
         var userProvider = Provider.of<UserProvider>(context, listen: false);
 
         userProvider.setUser(userRes.body);
+        userProvider.printUser();
       }
     } catch (e) {
       showSnackbar(context: context, text: e.toString());

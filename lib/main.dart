@@ -1,7 +1,8 @@
 import 'package:amazon_clone/Providers/user_provider.dart';
+import 'package:amazon_clone/common/widget/bottom_bar.dart';
+import 'package:amazon_clone/features/admin/screen/admin_screen.dart';
 import 'package:amazon_clone/features/auth/Screens/auth_screen.dart';
 import 'package:amazon_clone/features/auth/services/auth_services.dart';
-import 'package:amazon_clone/features/home/Screens/home_screen.dart';
 import 'package:amazon_clone/router.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -29,12 +30,15 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    authService.getUserData(context: context);
+    authService.getUserData(context);
+    var userProvider = Provider.of<UserProvider>(context, listen: false);
+    userProvider.printUser();
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         onGenerateRoute: (settings) => generateRoute(settings),
         theme: ThemeData(
@@ -49,7 +53,9 @@ class _MyAppState extends State<MyApp> {
           primarySwatch: Colors.blue,
         ),
         home: Provider.of<UserProvider>(context).user.token.isNotEmpty
-            ? const HomeScreen()
+            ? Provider.of<UserProvider>(context).user.type == 'user'
+                ? const BottomBar()
+                : const AdminScreen()
             : const AuthScreen());
   }
 }

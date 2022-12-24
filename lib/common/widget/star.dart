@@ -1,0 +1,21 @@
+import 'package:amazon_clone/constants/global_variable.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+
+class Star extends StatelessWidget {
+  final double rating;
+  const Star({Key? key, required this.rating}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return RatingBarIndicator(
+      direction: Axis.horizontal,
+      itemBuilder: (context, index) => const Icon(
+        Icons.star,
+        color: GlobalVariables.secondaryColor,
+      ),
+      rating: rating,
+      itemSize: 15,
+    );
+  }
+}
