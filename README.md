@@ -44,14 +44,20 @@ Amazon clone used sevral opensource tools :
 - [MongoDB] - best non sql database with using online api based cluster
 
 ## Installation
-<div class="row">
-   <div class = "column">
-      <img src="https://res.cloudinary.com/dlumfa1fo/image/upload/v1671907251/personal/nrz8ofjp53vixwx6ie4t.jpg" height = 500>
-   </div>
-   <div class = "column">
-      <img src="https://res.cloudinary.com/dlumfa1fo/image/upload/v1671907248/personal/eobdd22xyhmypg8ki0yz.jpg" height = 500>
-   </div>
-</div>
+
+## Screenshots
+ <table>
+  <tr>
+    <td>First Screen Page</td>
+     <td>Product Detail Page</td>
+     <td>Product Search Page</td>
+  </tr>
+  <tr>
+    <td><img src="https://res.cloudinary.com/dlumfa1fo/image/upload/v1671907251/personal/nrz8ofjp53vixwx6ie4t.jpg" height = 600></td>
+    <td><img src= "https://res.cloudinary.com/dlumfa1fo/image/upload/v1671907248/personal/eobdd22xyhmypg8ki0yz.jpg" height = 600></td>
+    <td><img src="https://res.cloudinary.com/dlumfa1fo/image/upload/v1671907250/personal/me2gqwzuxnmk5eledm1p.jpg" height = 600></td>
+  </tr>
+ </table>
 
    [VS code]: <https://github.com/joemccann/dillinger>
    [Flutter]: <https://github.com/joemccann/dillinger.git>
